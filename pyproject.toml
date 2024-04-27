@@ -1,0 +1,68 @@
+[tool.poetry]
+name = "django-user-sessions-ng"
+version = "0.1.2"
+description = "Django User Sessions NG - a Django package to manage multiple user sessions."
+authors = ["yujinio <root@yujin.io>"]
+license = "MIT"
+readme = "README.md"
+keywords = ["django", "sessions", "user", "sessions", "django-user-sessions-ng"]
+repository = "https://github.com/yujinio/django-user-sessions-ng"
+include = ["README.md", "LICENSE", "CHANGELOG.md"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.0.4"
+django-admin-autocomplete-filter = "^0.7.1"
+user-agents = "^2.2.0"
+django-ipware = "^7.0.1"
+
+[tool.poetry.group.dev.dependencies]
+pyupgrade = "^3.15.2"
+blacken-docs = "^1.16.0"
+bandit = "^1.7.8"
+geoip2 = "^4.8.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.1.2"
+pytest-django = "^4.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# ==== black ====
+[tool.black]
+include = '\.pyi?$'
+line-length = 119
+target-version = ['py311']
+
+# ==== isort ====
+[tool.isort]
+known_first_party = [
+  "django-user-sessions-ng",
+]
+line_length = 119
+multi_line_output = 3
+profile = "black"
+skip_glob = ["sessions/migrations/*.py"]
+
+# ==== mypy ====
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_generics = false
+disallow_incomplete_defs = true
+disallow_untyped_decorators = true
+disallow_untyped_defs = true
+ignore_missing_imports = false
+implicit_reexport = false
+plugins = [
+  "mypy_django_plugin.main",
+]
+python_version = "3.11"
+show_error_codes = true
+strict = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = true
