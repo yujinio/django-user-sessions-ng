@@ -5,7 +5,7 @@ description = "Django User Sessions NG - a Django package to manage multiple use
 authors = ["yujinio <root@yujin.io>"]
 license = "MIT"
 readme = "README.md"
-keywords = ["django", "sessions", "user", "sessions", "django-user-sessions-ng"]
+keywords = ["django", "sessions", "session-management", "django-user-sessions-ng"]
 repository = "https://github.com/yujinio/django-user-sessions-ng"
 include = ["README.md", "LICENSE", "CHANGELOG.md"]
 
