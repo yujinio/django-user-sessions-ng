@@ -1,0 +1,58 @@
+default_language_version:
+  python: "3.11"
+default_stages: [pre-commit]
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-json
+      - id: check-yaml
+      - id: debug-statements
+      - id: check-builtin-literals
+      - id: check-case-conflict
+      - id: detect-private-key
+      - id: check-ast
+      - id: mixed-line-ending
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.4.0
+    hooks:
+      - id: pyupgrade
+        files: ^sessions/
+        args: ["--py311-plus"]
+
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black
+        files: ^sessions/
+        args: [--config=pyproject.toml]
+
+  - repo: https://github.com/adamchainz/blacken-docs
+    rev: 1.13.0
+    hooks:
+      - id: blacken-docs
+        files: ^sessions/
+
+  - repo: https://github.com/pycqa/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        files: ^sessions/
+        exclude: "test_*"
+        args: ["-iii", "-ll", "-s=B308,B703"]
+
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        files: ^sessions/
+        args: ["--settings-path", "pyproject.toml"]
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        files: ^sessions/
