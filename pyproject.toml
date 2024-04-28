@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-user-sessions-ng"
-version = "0.1.2"
+version = "0.1.3"
 description = "Django User Sessions NG - a Django package to manage multiple user sessions."
 authors = ["yujinio <root@yujin.io>"]
 license = "MIT"

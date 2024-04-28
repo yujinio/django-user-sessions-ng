@@ -1,11 +1,11 @@
 import user_agents
 from django.conf import settings
-from django.contrib.sessions.middleware import SessionMiddleware
+from django.contrib.sessions.middleware import SessionMiddleware as DjangoSessionMiddleware
 from django.http import HttpRequest
 from ipware import get_client_ip
 
 
-class SessionMiddleware(SessionMiddleware):
+class SessionMiddleware(DjangoSessionMiddleware):
     def process_request(self, request: HttpRequest) -> None:
         session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
         ip = get_client_ip(request)[0]
