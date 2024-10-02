@@ -1,15 +1,21 @@
 default_language_version:
-  python: "3.11"
+  python: "3.12"
 default_stages: [pre-commit]
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
+      - id: check-added-large-files
+        args:
+          - --maxkb=5000
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-json
-        exclude: ^.vscode/settings.json$
+      - id: check-toml
+      - id: check-xml
       - id: check-yaml
+        args:
+          - --allow-multiple-documents
       - id: debug-statements
       - id: check-builtin-literals
       - id: check-case-conflict
@@ -21,39 +27,22 @@ repos:
     rev: v3.4.0
     hooks:
       - id: pyupgrade
-        files: ^sessions/
-        args: ["--py311-plus"]
+        files: ^src/
+        args: ["--py312-plus"]
 
-  - repo: https://github.com/psf/black
-    rev: 23.3.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.4
     hooks:
-      - id: black
-        files: ^sessions/
-        args: [--config=pyproject.toml]
-
-  - repo: https://github.com/adamchainz/blacken-docs
-    rev: 1.13.0
-    hooks:
-      - id: blacken-docs
-        files: ^sessions/
+      - id: ruff
+        args: [ --config=pyproject.toml, --fix ]
+        files: ^src/
+      - id: ruff-format
+        args: [ --config=pyproject.toml ]
+        files: ^src/
 
   - repo: https://github.com/pycqa/bandit
     rev: 1.7.5
     hooks:
       - id: bandit
-        files: ^sessions/
-        exclude: "test_*"
+        files: ^src/django_user_sessions_ng
         args: ["-iii", "-ll", "-s=B308,B703"]
-
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.12.0
-    hooks:
-      - id: isort
-        files: ^sessions/
-        args: ["--settings-path", "pyproject.toml"]
-
-  - repo: https://github.com/PyCQA/flake8
-    rev: 6.0.0
-    hooks:
-      - id: flake8
-        files: ^sessions/
