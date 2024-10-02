@@ -5,7 +5,7 @@ from django.contrib.gis.geoip2 import HAS_GEOIP2
 
 def get_location_data(ip: str) -> dict | None:
     if not HAS_GEOIP2:
-        return logging.warning("GeoIP2 is not available.")
+        return
 
     from django.contrib.gis.geoip2 import GeoIP2
 

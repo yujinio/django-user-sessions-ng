@@ -1,7 +1,7 @@
 [project]
 name = "django-user-sessions-ng"
 description = "Django User Sessions NG - a Django package to manage multiple user sessions."
-version = "0.1.6"
+version = "0.1.7"
 requires-python = ">=3.12"
 keywords = ["django", "sessions", "session-management", "django-user-sessions-ng"]
 authors = [{name = "yujin", email = "root@yujin.io"}]
