@@ -1,4 +1,0 @@
-{
-  "black-formatter.args": ["--config", "pyproject.toml"],
-  "isort.args": ["--settings-path", "pyproject.toml"],
-}
