@@ -1,6 +1,8 @@
 import user_agents
 from django.conf import settings
-from django.contrib.sessions.middleware import SessionMiddleware as DjangoSessionMiddleware
+from django.contrib.sessions.middleware import (
+    SessionMiddleware as DjangoSessionMiddleware,
+)
 from django.http import HttpRequest
 from ipware import get_client_ip
 

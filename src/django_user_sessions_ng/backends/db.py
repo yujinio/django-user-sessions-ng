@@ -1,5 +1,3 @@
-from typing import Type
-
 from django.apps import apps
 from django.contrib import auth
 from django.contrib.sessions.backends.db import SessionStore as DjangoSessionStore
@@ -14,13 +12,18 @@ class SessionStore(DjangoSessionStore):
     ip: str | None
     device: str | None
 
-    def __init__(self, session_key: str | None = None, ip: str | None = None, device: str | None = None):
+    def __init__(
+        self,
+        session_key: str | None = None,
+        ip: str | None = None,
+        device: str | None = None,
+    ):
         super().__init__(session_key)
         self.ip = ip
         self.device = device[:255] if device else None
 
     @classmethod
-    def get_model_class(cls) -> Type[Session]:  # type: ignore
+    def get_model_class(cls) -> type[Session]:  # type: ignore
         return Session
 
     @property

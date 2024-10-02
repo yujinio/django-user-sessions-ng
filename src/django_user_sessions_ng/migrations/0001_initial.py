@@ -8,7 +8,6 @@ import django_user_sessions_ng.models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -21,10 +20,18 @@ class Migration(migrations.Migration):
             fields=[
                 (
                     "session_key",
-                    models.CharField(max_length=40, primary_key=True, serialize=False, verbose_name="session key"),
+                    models.CharField(
+                        max_length=40,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="session key",
+                    ),
                 ),
                 ("session_data", models.TextField(verbose_name="session data")),
-                ("expire_date", models.DateTimeField(db_index=True, verbose_name="expire date")),
+                (
+                    "expire_date",
+                    models.DateTimeField(db_index=True, verbose_name="expire date"),
+                ),
                 ("ip", models.GenericIPAddressField(blank=True, null=True)),
                 ("device", models.CharField(max_length=255, null=True)),
                 ("created_at", models.DateTimeField(auto_now_add=True)),

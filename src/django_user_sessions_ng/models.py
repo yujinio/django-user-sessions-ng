@@ -17,7 +17,7 @@ class SessionQuerySet(models.QuerySet):
     def delete(self) -> tuple[int, dict[str, int]]:
         SessionStore = Session.get_session_store_class()
         if prefix := getattr(SessionStore, "cache_key_prefix", None):
-            caches[settings.SESSION_CACHE_ALIAS].delete_many((f"{prefix}{session.session_key}" for session in self))
+            caches[settings.SESSION_CACHE_ALIAS].delete_many(f"{prefix}{session.session_key}" for session in self)
         return super().delete()
 
 
@@ -26,7 +26,13 @@ class SessionManager(BaseSessionManager.from_queryset(SessionQuerySet)):
 
 
 class Session(AbstractBaseSession):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="sessions", db_index=True, null=True)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="sessions",
+        db_index=True,
+        null=True,
+    )
     ip = models.GenericIPAddressField(null=True, blank=True)
     device = models.CharField(max_length=255, null=True)
 

@@ -83,7 +83,9 @@ def test_load_modified(session_store_class, session_store, django_user_model):
     session_store.save()
 
     session_store2 = session_store_class(
-        session_key=session_store.session_key, device="Test Device Changed", ip="8.8.8.8"
+        session_key=session_store.session_key,
+        device="Test Device Changed",
+        ip="8.8.8.8",
     )
     session_store2.load()
 
@@ -139,8 +141,9 @@ def test_clear(session_store):
 
 def test_import(session_store_class):
     if settings.SESSION_ENGINE.endswith(".cached_db"):
-
-        from django_user_sessions_ng.backends.cached_db import SessionStore as CachedDBBackend
+        from django_user_sessions_ng.backends.cached_db import (
+            SessionStore as CachedDBBackend,
+        )
 
         assert issubclass(session_store_class, CachedDBBackend)
     elif settings.SESSION_ENGINE.endswith(".db"):

@@ -37,3 +37,36 @@ dev-dependencies = [
     "pyright>=1.1.383",
     "ruff>=0.6.8",
 ]
+
+[tool.ruff]
+fix = true
+include = ['.pyi']
+line-length = 119
+show-fixes = true
+target-version = "py312"
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 119
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.pyright]
+include = ["src"]
+venvPath = "."
+venv = ".venv"
+
+[tool.ruff.lint.isort]
+known-first-party = [
+  "django_user_sessions_ng",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+python_files = [
+  "tests.py",
+  "test_*.py",
+  "*_test.py",
+]
