@@ -1,8 +1,11 @@
+# 0.1.6
+
+- Set geoip2 dependency error to warning
+
 # 0.1.5
 
 - Replace `Poetry` with `uv` for dependency management
 - Replace some other development tools
-- Set geoip2 dependency error to warning
 
 # 0.1.4
 
