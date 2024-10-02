@@ -2,7 +2,7 @@ from pathlib import Path
 
 DEBUG = True
 ALLOWED_HOSTS = ("*",)
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = "qwerty"
 INSTALLED_APPS = [
     "django.contrib.auth",
